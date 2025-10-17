@@ -1,6 +1,7 @@
 // app/(onboarding)/signin.tsx
 import { COLORS } from '@/constants/Colors';
 import { FONTS, SIZES } from '@/constants/Theme';
+import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -10,23 +11,14 @@ export default function SignInScreen() {
     const handleSignIn = () => {
         console.log('Sign in with Email');
         // Navigate to your main app or authentication flow
+        router.push('/(auth)/intro');
     };
 
     return (
         <View style={styles.container}>
             <StatusBar style="dark" />
-
             <View style={styles.content}>
                 <View style={styles.iconContainer}>
-                    {/* <View style={styles.userIcon}>
-                        <MaterialCommunityIcons name="account" size={50} color={COLORS.blue} />
-                    </View>
-                    <View style={styles.userIcon2}>
-                        <MaterialCommunityIcons name="account" size={50} color={COLORS.blue} />
-                    </View>
-                    <View style={styles.addIcon}>
-                        <MaterialCommunityIcons name="plus" size={35} color={COLORS.white} />
-                    </View> */}
                     <SignInPageLogo />
                 </View>
 
