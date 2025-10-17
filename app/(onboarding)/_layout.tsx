@@ -8,11 +8,18 @@ export default function OnboardingLayout() {
         animation: 'fade',
       }}
     >
-      <Stack.Screen name="splash" />
+      {/* <Stack.Screen name="splash" />
       <Stack.Screen name="loading" />
       <Stack.Screen name="welcome" />
       <Stack.Screen name="accept" />
-      <Stack.Screen name="signin" />
+      <Stack.Screen name="signin" /> 
+      
+      //khageswar-dev added these
+      
+      */}
+      <Stack.Screen name="homescreen" /> 
+
+      {/* <Stack.Screen name="signInWithEmail" /> */}
     </Stack>
   );
 }
