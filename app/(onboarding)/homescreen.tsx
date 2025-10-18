@@ -1,22 +1,23 @@
-import React, { useState, useEffect, useRef, JSX } from 'react';
-import {
-    View,
-    Text,
-    StyleSheet,
-    StatusBar,
-    TouchableOpacity,
-    Animated,
-    Easing,
-} from 'react-native';
-import { COLORS } from '@/constants/Colors';
 import Frame from '@/assets/images/Frame.svg';
 import Vector from '@/assets/images/Vector.svg';
+import { COLORS } from '@/constants/Colors';
+import React, { JSX, useEffect, useRef, useState } from 'react';
+import {
+    Animated,
+    Easing,
+    StatusBar,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
+} from 'react-native';
 
 import Notification from '@/assets/images/notification.svg';
-import Settings from '@/assets/images/settings.svg';
 import Question from '@/assets/images/question.svg';
+import Settings from '@/assets/images/settings.svg';
 
 
+import { useRouter } from 'expo-router';
 import Svg, { Circle } from 'react-native-svg';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -88,6 +89,8 @@ const ThreeSecLoading = () => {
 const AuthenticatorApp = () => {
     const [code1, setCode1] = useState('456 088');
     const [clicked, setClicked] = useState(false);
+    const topValue = useRef(new Animated.Value(-12)).current;
+    const router = useRouter();
 
     // Simulate code refresh every 30 seconds
     useEffect(() => {
@@ -102,16 +105,24 @@ const AuthenticatorApp = () => {
         id: string;
         logo: JSX.Element;
         title: string;
+        route: '/(onboarding)/homeScreen3DotSecurityNotification'
+                | '/(onboarding)/homeScreen3DotSettings'
+                | '/(onboarding)/homeScreen3DotHelp';
     }
 
     const menuItems: MenuItem[] = [
-        {id:'notification', logo:<Notification/>, title: 'Security Notification'},
-        {id:'settings', logo:<Settings/>, title: 'Settings'},
-        {id:'help', logo:<Question/>, title: 'Help'}
+        { id: 'notification', logo: <Notification />, title: 'Security Notification', route: '/(onboarding)/homeScreen3DotSecurityNotification' },
+        { id: 'settings', logo: <Settings />, title: 'Settings', route: '/(onboarding)/homeScreen3DotSettings' },
+        { id: 'help', logo: <Question />, title: 'Help', route: '/(onboarding)/homeScreen3DotHelp' }
     ]
 
     const menuBtnClicked = () => {
-        console.log(clicked ? 'open' : 'close');
+        Animated.timing(topValue, {
+            toValue: clicked ? -12 : 88,
+            duration: 200,
+            useNativeDriver: false
+        }).start();
+        setClicked(!clicked);
     }
 
     return (
@@ -123,32 +134,37 @@ const AuthenticatorApp = () => {
                 <Text style={styles.headerTitle}>Authenticator</Text>
                 <TouchableOpacity
                     style={styles.menuButton}
-                    onPress={() => {
-                        const click = setClicked(!clicked);
-                        menuBtnClicked()
-                    }}
+                    onPress={menuBtnClicked}
                 >
                     <Text style={styles.menuIcon}>⋮</Text>
                 </TouchableOpacity>
             </View>
 
             {/* Menu bar */}
-            <View>
+            <Animated.View id='menubar-container' style={[styles.menubarContainer, {top: topValue}]}>
                 {
                     menuItems.map((item) => {
-                        return <Text key={item.id} style={styles.menuItemsContainer}>
-                                    
-                                    <Text>{item.logo}{item.title}</Text>
-                                </Text>
+                        return <TouchableOpacity 
+                                    id='item-container'
+                                    key={item.id} 
+                                    style={styles.menuItemContainer}
+                                    onPress={() => router.push(item.route)}
+                            >
+                            {item.logo}
+                            <Text style={{color: '#0f172aff'}}>{item.title}</Text>
+                        </TouchableOpacity>
+
                     })
                 }
-            </View>
+            </Animated.View>
 
 
             {/* Account List */}
             <View style={styles.content}>
                 {/* First Account */}
-                <TouchableOpacity style={styles.accountCard}>
+                <TouchableOpacity style={styles.accountCard}
+                    onPress={() => router.push('/(onboarding)/signInWithEmail')}
+                >
                     <View style={styles.accountHeader}>
                         <View style={styles.iconContainer}>
                             <Frame />
@@ -171,7 +187,9 @@ const AuthenticatorApp = () => {
                 </TouchableOpacity>
 
                 {/* Second Account */}
-                <TouchableOpacity style={styles.accountCard}>
+                <TouchableOpacity style={styles.accountCard}
+                    onPress={() => router.push('/(onboarding)/homeScreenProfile')}
+                >
                     <View style={styles.accountHeader}>
                         <View style={styles.iconContainer}>
                             <Frame />
@@ -196,14 +214,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5F5F5',
     },
     header: {
-        backgroundColor: '#362CA3F0',
+        backgroundColor: '#362ca3ff',
         paddingHorizontal: 16,
         paddingVertical: 12,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         width: 375,
-        height: 88
+        height: 88,
+        zIndex: 2
     },
     headerTitle: {
         color: '#FFFFFF',
@@ -337,6 +356,28 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         color: '#333333',
     },
+    menubarContainer: {
+        backgroundColor: 'white',
+        width: 190,
+        padding: 5,
+        position: 'absolute',
+        zIndex: 1,
+        right: 0,
+        // top: -10,
+        elevation: 5,
+        borderBottomLeftRadius: 9,
+        borderBottomRightRadius: 9
+    },
+    menuItemContainer: {
+        display: 'flex',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-end',
+        flexDirection: 'row',
+        gap: 8,
+        margin: 5,
+        opacity: 1
+        
+    }
 });
 
 export default AuthenticatorApp;

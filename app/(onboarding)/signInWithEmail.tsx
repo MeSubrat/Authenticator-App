@@ -1,9 +1,7 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
-import HeaderTitle from '@/app/(onboarding)/homescreen';
-import { COLORS } from '@/constants/Colors';
-import { TouchableOpacity } from 'react-native';
 import Shild from '@/assets/images/arcticons_authenticator.svg';
+import { COLORS } from '@/constants/Colors';
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const signInWithEmail = () => {
 
@@ -67,7 +65,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5F5F5'
     },
     header: {
-        backgroundColor: '#362CA3F0',
+        backgroundColor: COLORS.primary,
         paddingHorizontal: 16,
         paddingVertical: 12,
         flexDirection: 'row',
