@@ -44,7 +44,10 @@ export default function OTPVerificationScreen() {
         }
 
         // Navigate to home screen after successful verification
-        router.push('/(auth)/home');
+        // Bro I think you push the wrong screen here I pushed here the real 
+        // screen i.e '/(onboarding)/homescreen'
+        // router.push('/(auth)/home');
+        router.push('/(onboarding)/homescreen');
     };
 
     const handleResend = () => {
