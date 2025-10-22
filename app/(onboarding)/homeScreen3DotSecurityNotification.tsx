@@ -6,7 +6,7 @@ import React from 'react';
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const homeScreen3DotSecurityNotification = () => {
-    const screenWidth = Dimensions.get('window').width;
+    const {width: deviceWidth} = Dimensions.get('window');
     const router = useRouter();
     return (
         <View style={styles.container}>
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     },
     headerContainer: {
         backgroundColor: COLORS.primary,
+        width: '100%',
         height: 88,
         display: 'flex',
         justifyContent: 'flex-end',

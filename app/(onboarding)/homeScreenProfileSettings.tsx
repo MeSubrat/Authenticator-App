@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
     headerContainer: {
         backgroundColor: COLORS.primary,
         height: 88,
+        width: '100%',
         display: 'flex',
         justifyContent: 'flex-end',
         alignItems: 'center'

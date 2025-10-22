@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         paddingVertical: 12,
         height: 100,
+        width: '100%'
     },
     headerButton: {
         width: 320,

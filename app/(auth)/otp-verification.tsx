@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLORS.white,
+        
     },
     header: {
         flexDirection: 'row',
@@ -136,7 +137,8 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        paddingHorizontal: SIZES.padding * 2,
+        paddingHorizontal:15,
+        alignItems: 'center',
         paddingTop: 20,
     },
     description: {
@@ -150,8 +152,8 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     otpInput: {
-        width: 50,
-        height: 50,
+        width: 44,
+        height: 47,
         borderWidth: 1,
         borderColor: COLORS.gray,
         borderRadius: 8,
@@ -159,6 +161,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: '600',
         color: COLORS.black,
+        margin: 6,
     },
     otpInputFilled: {
         borderColor: COLORS.primary,
@@ -175,10 +178,12 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: COLORS.primary,
-        paddingVertical: 16,
+        paddingVertical: 10,
         borderRadius: SIZES.radius,
         alignItems: 'center',
         marginTop: 20,
+        width: 330
+
     },
     buttonText: {
         color: COLORS.white,

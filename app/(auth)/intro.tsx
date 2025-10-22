@@ -98,17 +98,17 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLORS.white,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     content: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
     dotsContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        position: 'absolute',
-        bottom: 100,
+        justifyContent: 'center', // center horizontally
     },
     dot: {
         width: DOT_SIZE,

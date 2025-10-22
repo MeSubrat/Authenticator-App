@@ -9,9 +9,11 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
+import { Dimensions } from 'react-native';
 
 export default function HelpScreen() {
     const router = useRouter();
+    const {width: deviceWidth} = Dimensions.get('window');
     return (
         <View style={styles.container}>
 
@@ -23,7 +25,7 @@ export default function HelpScreen() {
                         onPress={() => router.push('/(onboarding)/homescreen')}
                     style={{
                         position: 'absolute',
-                        left: -145,
+                        right: deviceWidth * 0.43,
                         top: 3
                     }}>
                         <LeftArrow />
@@ -72,6 +74,7 @@ const styles = StyleSheet.create({
     },
     headerContainer: {
         backgroundColor: COLORS.primary,
+        width: '100%',
         height: 88,
         display: 'flex',
         justifyContent: 'flex-end',
