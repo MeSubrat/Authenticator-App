@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
           backgroundColor: COLORS.primary,
+          width: '100%',
           height: 88,
           display: 'flex',
           justifyContent: 'flex-end',
