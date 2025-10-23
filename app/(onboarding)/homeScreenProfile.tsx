@@ -89,7 +89,7 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f9fafb',
+        backgroundColor: '#ffffffff',
     },
     statusBar: {
         backgroundColor: '#5046e5',
@@ -114,16 +114,6 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
         gap: 2,
     },
-    bar: {
-        width: 3,
-        backgroundColor: '#ffffff',
-        borderRadius: 1,
-    },
-    statusIcon: {
-        color: '#ffffff',
-        fontSize: 14,
-        marginLeft: 4,
-    },
     header: {
         backgroundColor: COLORS.primary,
         flexDirection: 'row',
@@ -135,12 +125,12 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     headerButton: {
-        width: 320,
+        width: '100%',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        top: 15
+        top: 15,
     },
     profileSection: {
         backgroundColor: COLORS.primary,
@@ -181,7 +171,7 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#ffffffff',
     },
     section: {
         paddingHorizontal: 24,
@@ -205,13 +195,13 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     infoTitle: {
-        color: '#1E3A8A',
+        color: '#0F172A',
         fontSize: 16,
         fontWeight: '500',
         marginBottom: 4,
     },
     infoDescription: {
-        color: '#6b7280',
+        color: '#475569',
         fontSize: 14,
         lineHeight: 20,
     },

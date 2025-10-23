@@ -57,13 +57,13 @@ export default function IntroScreen() {
             <View style={styles.dotsContainer}>
                 {[0, 1, 2].map((index) => {
                     const opacity = fadeAnims[index].interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [0.3, 1],
+                        inputRange: [0, 2],
+                        outputRange: [0.6, 1],
                     });
 
                     const scale = fadeAnims[index].interpolate({
                         inputRange: [0, 1],
-                        outputRange: [1, 1.3],
+                        outputRange: [1.6, 2.1],
                     });
 
                     return (
@@ -108,7 +108,8 @@ const styles = StyleSheet.create({
     dotsContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center', // center horizontally
+        justifyContent: 'center',
+        gap: 10 // center horizontally
     },
     dot: {
         width: DOT_SIZE,

@@ -1,5 +1,6 @@
 import Frame from '@/assets/images/Frame.svg';
 import Vector from '@/assets/images/Vector.svg';
+import ThreeDot from '@/assets/images/threeDot.svg';
 import { COLORS } from '@/constants/Colors';
 import React, { JSX, useEffect, useRef, useState } from 'react';
 import {
@@ -136,7 +137,9 @@ const AuthenticatorApp = () => {
                     style={styles.menuButton}
                     onPress={menuBtnClicked}
                 >
-                    <Text style={styles.menuIcon}>⋮</Text>
+                    <Text style={styles.menuIcon}>
+                        <ThreeDot/>
+                    </Text>
                 </TouchableOpacity>
             </View>
 
@@ -214,7 +217,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5F5F5',
     },
     header: {
-        backgroundColor: '#362ca3ff',
+        backgroundColor: '#1E3A8A',
         paddingHorizontal: 16,
         paddingVertical: 12,
         flexDirection: 'row',
@@ -227,14 +230,16 @@ const styles = StyleSheet.create({
     headerTitle: {
         color: '#FFFFFF',
         fontSize: 18,
-        fontWeight: '500',
+        fontWeight: 600,
         margin: 'auto',
         marginTop: 38
     },
     menuButton: {
         padding: 4,
-        marginTop: 30,
-        marginRight: 7
+        top: 45,
+        marginRight: 7,
+        position: 'absolute', 
+        right: 0
     },
     menuIcon: {
         color: '#FFFFFF',
@@ -262,7 +267,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 12,
-        backgroundColor: '#ebebebff',
+        backgroundColor: '#ECE8E8',
         borderRadius: 15,
     },
     icon: {
@@ -280,13 +285,13 @@ const styles = StyleSheet.create({
     },
     accountLabel: {
         fontSize: 16,
-        color: '#212121',
+        color: '#0F172A',
         fontWeight: '500',
         marginBottom: 2,
     },
     accountEmail: {
         fontSize: 13,
-        color: '#757575',
+        color: '#475569',
     },
     chevron: {
         fontSize: 24,

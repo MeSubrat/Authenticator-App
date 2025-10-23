@@ -3,13 +3,13 @@ import { COLORS } from '@/constants/Colors';
 import { useRouter } from 'expo-router';
 import React from 'react';
 import {
+    Dimensions,
     ScrollView,
     StyleSheet,
     Text,
     TouchableOpacity,
     View
 } from 'react-native';
-import { Dimensions } from 'react-native';
 
 export default function HelpScreen() {
     const router = useRouter();
@@ -20,19 +20,20 @@ export default function HelpScreen() {
 
             {/* Header */}
             <View style={styles.headerContainer}>
-                <View style={styles.header}>
                     <TouchableOpacity
                         onPress={() => router.push('/(onboarding)/homescreen')}
                     style={{
                         position: 'absolute',
-                        right: deviceWidth * 0.43,
-                        top: 3
+                        left: 15, 
+                        top: 50
                     }}>
                         <LeftArrow />
                     </TouchableOpacity>
+                <View style={styles.header}>
                     <Text style={{
                         color: 'white',
-                        fontSize: 18
+                        fontSize: 18,
+                        fontWeight: 600
                     }}>Help</Text>
                 </View>
             </View>

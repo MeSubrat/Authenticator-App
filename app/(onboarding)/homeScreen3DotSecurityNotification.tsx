@@ -11,24 +11,26 @@ const homeScreen3DotSecurityNotification = () => {
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
-                <View style={styles.header}>
                     <TouchableOpacity 
                         onPress={() => router.push('/(onboarding)/homescreen')}
                     style={{
                         position: 'absolute',
-                        left: -70, 
-                        top: 3
+                        left: 15, 
+                        top: 50
                     }}>
                         <LeftArrow />
                     </TouchableOpacity>
+                <View style={styles.header}>
                     <Text style={{
                         color: 'white',
-                        fontSize: 18
+                        fontSize: 18,
+                        fontWeight: 600
                     }}>Security Notifications</Text>
                 </View>
             </View>
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                 <PaperAirplane/>
+                <Text style={{color: '#0F172A', fontSize:16}}>No activity to show yet</Text>
             </View>
         </View>
     )

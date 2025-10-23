@@ -2,9 +2,11 @@ import Shild from '@/assets/images/arcticons_authenticator.svg';
 import { COLORS } from '@/constants/Colors';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useRouter } from 'expo-router';
 
 const signInWithEmail = () => {
 
+    const navigator = useRouter();
     const authNumber: string[] = ['90', '90', '90'];
     const links: string[] = ['Terms & Conditions', 'Privacy Policy']
 
@@ -48,8 +50,14 @@ const signInWithEmail = () => {
                 </View>
             </View>
 
-            <View id='cancel-btn' style={styles.cancelBtnContainer}>
-                    <TouchableOpacity style={styles.cancelBtn}>
+            <View
+                
+                id='cancel-btn' 
+                style={styles.cancelBtnContainer}>
+                    <TouchableOpacity 
+                        style={styles.cancelBtn}
+                        onPress={() => navigator.push('/(onboarding)/homescreen')}
+                    >
                         <Text style={{color: '#362CA3', fontSize: 18}}>Cancel</Text>
                     </TouchableOpacity>
             </View>
@@ -71,7 +79,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: 375,
+        width: '100%',
         height: 88
     },
     headerTitle: {
@@ -82,7 +90,8 @@ const styles = StyleSheet.create({
         marginTop: 38
     },
     contentContainer: {
-        width: 334,
+        width: '100%',
+        padding: 15,
         height: 292,
         margin: 'auto',
         top: 10,
@@ -131,8 +140,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        top: 350, 
-        // backgroundColor: 'gray',
+        top: '85%',
     },
     cancelBtn:{
         borderWidth: 1,

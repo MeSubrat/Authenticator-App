@@ -1,8 +1,8 @@
 import LeftArrow from '@/assets/images/leftArrow.svg';
 import Vector from '@/assets/images/Vector.svg';
 import { COLORS } from '@/constants/Colors';
-import React from 'react';
-import { Dimensions, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
+import { Animated, Dimensions, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 interface RenameModalProps {
     visible: boolean;
@@ -61,6 +61,9 @@ const RenameModal: React.FC<RenameModalProps> = ({ visible, onClose, onSave, ini
     );
 };
 
+
+
+
 const homeScreenProfileSettings = () => {
     const screenWidth = Dimensions.get('window').width;
     const [isModalVisible, setIsModalVisible] = React.useState(false);
@@ -75,7 +78,7 @@ const homeScreenProfileSettings = () => {
                 <View style={styles.header}>
                     <View style={{
                         position: 'absolute',
-                        left: -130, 
+                        left: -130,
                         top: 3
                     }}>
                         <LeftArrow />
@@ -210,7 +213,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         fontSize: 14,
         color: '#111827',
-        backgroundColor: '#edf3f8ff',
+        backgroundColor: '#ffffffff',
     },
     footer: {
         flexDirection: 'row',
@@ -229,5 +232,5 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: '#1E3A8A',
         fontWeight: '500',
-    },
+    }
 });

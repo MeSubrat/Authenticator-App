@@ -99,8 +99,10 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        paddingHorizontal: SIZES.padding * 2,
+        // paddingHorizontal: 2,
+        alignItems:'flex-start',
         paddingTop: 60,
+        padding: 20
     },
     title: {
         ...FONTS.h1,
@@ -109,6 +111,7 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         marginBottom: 20,
+        width: '100%',
     },
     input: {
         borderBottomWidth: 1,
@@ -116,6 +119,7 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         fontSize: 16,
         color: COLORS.black,
+        width: '100%',
     },
     inputError: {
         borderBottomColor: 'red',
@@ -133,15 +137,19 @@ const styles = StyleSheet.create({
     },
     footer: {
         flexDirection: 'row',
-        paddingHorizontal: SIZES.padding * 2,
-        paddingBottom: 40,
-        gap: 15,
+        paddingHorizontal:15,
+        paddingBottom: 30,
+        gap: 20,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     buttonSecondary: {
         flex: 1,
         backgroundColor: COLORS.white,
-        paddingVertical: 16,
-        borderRadius: SIZES.radius,
+        paddingVertical: 10,
+        maxWidth: 162,
+        borderRadius: 5,
         alignItems: 'center',
         borderWidth: 1,
         borderColor: COLORS.primary,
@@ -153,9 +161,12 @@ const styles = StyleSheet.create({
     buttonPrimary: {
         flex: 1,
         backgroundColor: COLORS.primary,
-        paddingVertical: 16,
-        borderRadius: SIZES.radius,
+        paddingVertical: 10,
+        borderRadius: 5,
+        maxWidth: 162,
         alignItems: 'center',
+        borderWidth: 1,
+        borderColor: COLORS.primary,
     },
     buttonPrimaryText: {
         color: COLORS.white,

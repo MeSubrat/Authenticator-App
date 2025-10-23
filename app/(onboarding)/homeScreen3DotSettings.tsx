@@ -5,14 +5,50 @@ import { COLORS } from '@/constants/Colors';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
+  Animated,
   Dimensions,
   ScrollView,
   StyleSheet,
-  Switch,
   Text,
   TouchableOpacity,
   View
 } from 'react-native';
+
+//Toggle button
+const ToggleButton = () => {
+  const [isOn, setIsOn] = useState(false);
+  const [animation] = useState(new Animated.Value(0));
+
+  const toggleSwitch = () => {
+    const toValue = isOn ? 0 : 1;
+    Animated.timing(animation, {
+      toValue,
+      duration: 200,
+      useNativeDriver: false,
+    }).start();
+    setIsOn(!isOn);
+  };
+
+  // Interpolating animated values for position and background color
+  const translateX = animation.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 24],
+  });
+
+  const backgroundColor = animation.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['#cfcfcfff', '#1E3A8A'],
+  });
+
+  return (
+
+    <TouchableOpacity onPress={toggleSwitch} activeOpacity={0.8}>
+      <Animated.View style={[styles.toggleContainer, { backgroundColor }]}>
+        <Animated.View style={[styles.circle, { transform: [{ translateX }] }]} />
+      </Animated.View>
+    </TouchableOpacity>
+  );
+}
 
 export default function SettingsScreen() {
   const [appUpdates, setAppUpdates] = useState(true);
@@ -25,22 +61,23 @@ export default function SettingsScreen() {
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.headerContainer}>
-                <View style={styles.header}>
-                    <TouchableOpacity 
-                      onPress={() => router.push('/(onboarding)/homescreen')}
-                    style={{
-                        position: 'absolute',
-                        left: -130, 
-                        top: 3
-                    }}>
-                        <LeftArrow />
-                    </TouchableOpacity>
-                    <Text style={{
-                        color: 'white',
-                        fontSize: 18
-                    }}>Settings</Text>
-                </View>
-            </View>
+        <TouchableOpacity
+          onPress={() => router.push('/(onboarding)/homescreen')}
+          style={{
+            position: 'absolute',
+            left: 15,
+            top: 50
+          }}>
+          <LeftArrow />
+        </TouchableOpacity>
+        <View style={styles.header}>
+          <Text style={{
+            color: 'white',
+            fontSize: 18,
+            fontWeight: 600
+          }}>Settings</Text>
+        </View>
+      </View>
 
       {/* Content */}
       <ScrollView style={styles.content}>
@@ -50,7 +87,7 @@ export default function SettingsScreen() {
         {/* Notifications Settings */}
         <TouchableOpacity style={styles.settingItem}>
           <View style={styles.iconContainer}>
-            <Text><Setting  width={24} height={24}/></Text>
+            <Text><Setting width={24} height={24} /></Text>
           </View>
           <View style={styles.settingContent}>
             <Text style={styles.settingTitle}>Notifications Settings</Text>
@@ -63,7 +100,7 @@ export default function SettingsScreen() {
         {/* App Updates */}
         <View style={styles.settingItemWithSwitch}>
           <View style={styles.iconContainer}>
-            <Text style={styles.bellIcon}><Notification width={24} height={24}/></Text>
+            <Text style={styles.bellIcon}><Notification width={24} height={24} /></Text>
           </View>
           <View style={styles.settingContent}>
             <Text style={styles.settingTitle}>App updates</Text>
@@ -71,13 +108,16 @@ export default function SettingsScreen() {
               Keeps you informed about new features. You'll continue to receive two-factor and login notifications even if this is turned off.
             </Text>
           </View>
-          <Switch
+          {/* <Switch
             value={appUpdates}
             onValueChange={setAppUpdates}
             trackColor={{ false: '#d1d5db', true: '#3b82f6' }}
             thumbColor="#ffffff"
             ios_backgroundColor="#d1d5db"
-          />
+            /> */}
+          <View style={styles.toogleBtn}>
+            <ToggleButton />
+          </View>
         </View>
 
         {/* Logs Section */}
@@ -91,20 +131,18 @@ export default function SettingsScreen() {
               Allow AIKA to gather non personally identifiable usage data to improve the app. Learn more in the FAQs available under the Help menu.
             </Text>
           </View>
-          <Switch
+          {/* <Switch
             value={usageData}
             onValueChange={setUsageData}
             trackColor={{ false: '#d1d5db', true: '#3b82f6' }}
             thumbColor="#ffffff"
             ios_backgroundColor="#d1d5db"
-          />
+            /> */}
+          <View style={styles.toogleBtn}>
+            <ToggleButton />
+          </View>
         </View>
       </ScrollView>
-
-      {/* Home Indicator */}
-      <View style={styles.homeIndicatorContainer}>
-        <View style={styles.homeIndicator} />
-      </View>
     </View>
   );
 }
@@ -115,19 +153,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#f9fafb',
   },
   headerContainer: {
-          backgroundColor: COLORS.primary,
-          width: '100%',
-          height: 88,
-          display: 'flex',
-          justifyContent: 'flex-end',
-          alignItems: 'center'
-      },
-      
-    header: {
-        display: 'flex',
-        flexDirection: 'row',
-        marginBottom: 15
-    },
+    backgroundColor: COLORS.primary,
+    width: '100%',
+    height: 88,
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+
+  header: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginBottom: 15
+  },
   headerSpacer: {
     width: 40,
   },
@@ -191,15 +229,23 @@ const styles = StyleSheet.create({
     color: '#6b7280',
     lineHeight: 18,
   },
-  homeIndicatorContainer: {
-    backgroundColor: '#ffffff',
-    paddingVertical: 8,
+  toggleContainer: {
+    width: 52,
+    height: 28,
+    borderRadius: 20,
+    justifyContent: 'center',
+    padding: 2,
+  }, circle: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: '#FFFFFF',
+    elevation: 3,
+  },
+  toogleBtn: {
+    paddingVertical: 40,
+    display: 'flex',
     alignItems: 'center',
-  },
-  homeIndicator: {
-    width: 134,
-    height: 5,
-    backgroundColor: '#000000',
-    borderRadius: 3,
-  },
+    justifyContent: 'center'
+  }
 });

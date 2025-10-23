@@ -1,6 +1,6 @@
 // constants/Colors.ts
 export const COLORS = {
-  primary: '#362ca3ff',
+  primary: '#1E3A8A',
   secondary: '#4CAF50',
   white: '#FFFFFF',
   black: '#000000',
